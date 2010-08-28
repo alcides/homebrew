@@ -15,7 +15,8 @@ class R <Formula
     ENV["FCFLAGS"] = ENV["CFLAGS"]
     ENV["FFLAGS"]  = ENV["CFLAGS"]
 
-    system "./configure", "--prefix=#{prefix}"
+    system "./configure --with-blas='-framework vecLib' --with-lapack \
+           --with-aqua --enable-R-framework --prefix=#{prefix}" 
     system "make"
     ENV.j1 # Serialized installs, please
     system "make install"
